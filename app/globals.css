@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  --background: #09090b;
+  --foreground: #f4f4f5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--background);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--foreground);
+  background:
+    radial-gradient(circle at 18% 0%, rgba(124, 58, 237, 0.16), transparent 34rem),
+    radial-gradient(circle at 86% 18%, rgba(16, 185, 129, 0.08), transparent 28rem),
+    #09090b;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+button,
+[contenteditable="true"] {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: rgba(167, 139, 250, 0.3);
+  color: white;
+}
+
+.notebook-editor {
+  min-height: 190px;
+  padding: 20px;
+  outline: none;
+  color: #f4f4f5;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.notebook-editor p.is-editor-empty:first-child::before {
+  content: "Напишите что-нибудь важное…";
+  float: left;
+  height: 0;
+  pointer-events: none;
+  color: #52525b;
+}
+
+.notebook-editor p,
+.note-preview p {
+  margin: 0;
+}
+
+.notebook-editor p + p,
+.note-preview p + p {
+  margin-top: 0.5rem;
+}
+
+.notebook-editor ul,
+.note-preview ul {
+  margin: 0.5rem 0 0.5rem 1.1rem;
+  list-style: disc;
+}
+
+.notebook-editor ol,
+.note-preview ol {
+  margin: 0.5rem 0 0.5rem 1.1rem;
+  list-style: decimal;
+}
+
+.notebook-editor strong,
+.note-preview strong {
+  font-weight: 700;
+  color: white;
+}
+
+.notebook-editor em,
+.note-preview em {
+  font-style: italic;
+}
+
+.notebook-editor s,
+.note-preview s {
+  color: #71717a;
+}
+
+.note-preview {
+  outline: none;
+  font-size: 14px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+@keyframes limit-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  18% {
+    transform: translateX(-4px);
+  }
+  36% {
+    transform: translateX(4px);
+  }
+  54% {
+    transform: translateX(-2px);
+  }
+  72% {
+    transform: translateX(2px);
+  }
+}
+
+@keyframes limit-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(251, 113, 133, 0);
+  }
+  50% {
+    box-shadow: 0 0 0 5px rgba(251, 113, 133, 0.08);
+  }
+}
+
+.limit-over {
+  animation:
+    limit-shake 360ms ease-out,
+    limit-glow 900ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
